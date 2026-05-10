@@ -1,0 +1,14 @@
+[package]
+name = "sw-ibm1130-codegen"
+version = "0.1.0"
+edition = "2024"
+description = "IBM 1130 Codegen: lowering TIR to instructions"
+license = "MIT"
+
+[dependencies]
+sw-isa-core = { path = "/Users/mike/github/sw-langtools/sw-isa-core" }
+sw-target-core = { path = "/Users/mike/github/sw-langtools/sw-target-core" }
+sw-tir = { path = "/Users/mike/github/sw-langtools/sw-tir" }
+sw-codegen-core = { path = "/Users/mike/github/sw-langtools/sw-codegen-core" }
+sw-ibm1130-isa = { path = "../sw-ibm1130-isa" }
+sw-ibm1130-target = { path = "../sw-ibm1130-target" }
