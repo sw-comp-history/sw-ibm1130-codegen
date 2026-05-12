@@ -70,11 +70,11 @@ fn lower_i16_add() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=Add tag=0 indirect=false address=1>
-<Long op=Store tag=0 indirect=false address=2>
-<Long op=Load tag=0 indirect=false address=2>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=Add tag=0 indirect=false mask=0 address=1>
+<Long op=Store tag=0 indirect=false mask=0 address=2>
+<Long op=Load tag=0 indirect=false mask=0 address=2>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -99,17 +99,17 @@ fn lower_i16_sub_mul_div() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=Subtract tag=0 indirect=false address=1>
-<Long op=Store tag=0 indirect=false address=3>
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=Multiply tag=0 indirect=false address=1>
-<Long op=Store tag=0 indirect=false address=4>
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=Divide tag=0 indirect=false address=1>
-<Long op=Store tag=0 indirect=false address=5>
-<Long op=Load tag=0 indirect=false address=3>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=Subtract tag=0 indirect=false mask=0 address=1>
+<Long op=Store tag=0 indirect=false mask=0 address=3>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=Multiply tag=0 indirect=false mask=0 address=1>
+<Long op=Store tag=0 indirect=false mask=0 address=4>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=Divide tag=0 indirect=false mask=0 address=1>
+<Long op=Store tag=0 indirect=false mask=0 address=5>
+<Long op=Load tag=0 indirect=false mask=0 address=3>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -137,10 +137,10 @@ fn lower_load() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=true address=0>
-<Long op=Store tag=0 indirect=false address=1>
-<Long op=Load tag=0 indirect=false address=1>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Load tag=0 indirect=true mask=0 address=0>
+<Long op=Store tag=0 indirect=false mask=0 address=1>
+<Long op=Load tag=0 indirect=false mask=0 address=1>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -167,9 +167,9 @@ fn lower_store() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=false address=1>
-<Long op=Store tag=0 indirect=true address=0>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=1>
+<Long op=Store tag=0 indirect=true mask=0 address=0>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -214,17 +214,17 @@ fn lower_icmp_and_cond_branch() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=Subtract tag=0 indirect=false address=1>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=Subtract tag=0 indirect=false mask=0 address=1>
 <Short op=BranchSkipCondition tag=0 disp=32>
-<Long op=Store tag=0 indirect=false address=2>
-<Long op=Load tag=0 indirect=false address=2>
-<Long op=BranchSkipCondition tag=0 indirect=false address=0>
-<Long op=BranchSkipCondition tag=0 indirect=false address=0>
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
-<Long op=Load tag=0 indirect=false address=1>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Store tag=0 indirect=false mask=0 address=2>
+<Long op=Load tag=0 indirect=false mask=0 address=2>
+<Long op=BranchSkipCondition tag=0 indirect=false mask=0 address=0>
+<Long op=BranchSkipCondition tag=0 indirect=false mask=0 address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=1>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -263,11 +263,11 @@ fn lower_call_and_return() {
     );
     let actual = render_function(&f);
     let expected = "\
-<Long op=Load tag=0 indirect=false address=0>
-<Long op=BranchStore tag=0 indirect=false address=0>
-<Long op=Store tag=0 indirect=false address=2>
-<Long op=Load tag=0 indirect=false address=2>
-<Long op=BranchSkipCondition tag=0 indirect=true address=0>
+<Long op=Load tag=0 indirect=false mask=0 address=0>
+<Long op=BranchStore tag=0 indirect=false mask=0 address=0>
+<Long op=Store tag=0 indirect=false mask=0 address=2>
+<Long op=Load tag=0 indirect=false mask=0 address=2>
+<Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(actual, expected);
 }
@@ -328,11 +328,11 @@ fn backend_emit_asm_for_module() {
     Ibm1130Backend.emit_asm(&m, &mut s).unwrap();
     let expected = "\
 add:
-  <Long op=Load tag=0 indirect=false address=0>
-  <Long op=Add tag=0 indirect=false address=1>
-  <Long op=Store tag=0 indirect=false address=2>
-  <Long op=Load tag=0 indirect=false address=2>
-  <Long op=BranchSkipCondition tag=0 indirect=true address=0>
+  <Long op=Load tag=0 indirect=false mask=0 address=0>
+  <Long op=Add tag=0 indirect=false mask=0 address=1>
+  <Long op=Store tag=0 indirect=false mask=0 address=2>
+  <Long op=Load tag=0 indirect=false mask=0 address=2>
+  <Long op=BranchSkipCondition tag=0 indirect=true mask=0 address=0>
 ";
     assert_eq!(s, expected);
 }

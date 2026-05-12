@@ -67,6 +67,7 @@ impl<'a> LowerCtx<'a> {
             op,
             tag,
             indirect,
+            mask: 0,
             address,
         });
     }
